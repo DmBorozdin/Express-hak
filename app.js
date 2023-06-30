@@ -1,3 +1,7 @@
+import {sequelize} from './db'
+import {Users} from "./db/user";
+import {Posts} from "./db/posts";
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -39,3 +43,21 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+async function start(){
+  try {
+   await sequelize.sync({alter: true, force: true})
+    
+  }catch (e) {
+    await Users.create({
+      id: '1',
+      user: 'Иванов',
+      password: '1234'
+    })
+    await Posts.create({
+      id: '1',
+      info: 'Иванов',
+      id_users: '1234'
+    })
+  }
+}

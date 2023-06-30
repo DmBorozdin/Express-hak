@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { readFromFile } from '../utils/fileUsers';
 
 export interface User {
     id: number,
@@ -8,8 +9,8 @@ export interface User {
 
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const contacts = 'lalal'
-      res.json(contacts);
+      const users = await readFromFile();
+      res.json(users);
     } catch (error) {
       next(error);
     }

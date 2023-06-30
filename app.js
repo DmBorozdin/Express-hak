@@ -49,6 +49,7 @@ async function start(){
    await sequelize.sync({alter: true, force: true})
     
   }catch (e) {
+    //methods to create
     await Users.create({
       id: '1',
       user: 'Иванов',
@@ -56,8 +57,25 @@ async function start(){
     })
     await Posts.create({
       id: '1',
-      info: 'Иванов',
+      info: 'info',
       id_users: '1234'
+    })
+    //methods to update
+    await Posts.update(
+        {
+          info: 'new info',
+        },
+        {
+          where: {
+            id: 1,
+          },
+        }
+    )
+    //methods to delete posts
+    await Posts.destroy({
+      where: {
+        id: 1,
+      },
     })
   }
 }

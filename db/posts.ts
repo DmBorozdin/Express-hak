@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize')
 export {sequelize} from './test'
 
+
 export const Posts = sequelize.define('posts',
 
     // Описание таблиц
